@@ -1,0 +1,36 @@
+<div class="row">
+Search : 
+<input type="text" ng-model="searchText.project" placeholder="Search Project" />
+<input type="text" ng-model="searchText.interface" placeholder="Search Interface" />
+<input type="text" ng-model="searchText.environment" placeholder="Search Environment" />
+<input type="checkbox" ng-model="exactMatch"> Exact Match for All
+<status-text ng-show="isLoading"></status-text>
+</div>
+<div class="row">
+<table class="table">
+    <thead>
+          <tr>
+              <th ng-click="sortData('project')">Project <div ng-class="getSortClass('project')"></div></th>
+              <th ng-click="sortData('interface')">Interface <div ng-class="getSortClass('interface')"></div></th>
+              <th ng-click="sortData('environment')">Environment <div ng-class="getSortClass('environment')"></div></th>
+              <th ng-click="sortData('broker_name')">Broker <div ng-class="getSortClass('broker_name')"></div></th>
+              <th ng-click="sortData('execution_groupname')">EG Name <div ng-class="getSortClass('execution_groupname')"></div></th>
+              <th ng-click="sortData('additional_instance')">Additional Instance <div ng-class="getSortClass('additional_instance')"></div></th>
+              <th ng-click="sortData('itcam')">ITCAM Enable <div ng-class="getSortClass('itcam')"></div></th>
+          </tr>  
+    </thead>
+    <body>
+        <tr ng-repeat="target in listDeploymentTargets | orderBy:sortColumn:reverseSort | filter:searchText:exactMatch">
+            <td>{{target.project}}</td>
+            <td>{{target.interface}}</td>
+            <td>{{target.environment}}</td>
+            <td>{{target.broker_name}}</td>  
+            <td>{{target.execution_groupname}}</td>  
+            <td>{{target.additional_instance}}</td>    
+            <td>{{target.itcam}}</td>    
+        </tr>
+    </body>
+</table>
+<br>
+<button class="btn btn-primary" ng-click="reload()">Reload</button>
+</div>

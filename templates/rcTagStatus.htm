@@ -1,0 +1,32 @@
+<div class="row">
+Search : 
+<input type="text" ng-model="searchText.project" placeholder="Search Project" />
+<input type="text" ng-model="searchText.interface" placeholder="Search Interface" />
+<input type="text" ng-model="searchText.environment" placeholder="Search Environment" />
+<input type="text" ng-model="searchText.rc_tag" placeholder="Search RC Tags" />
+<input type="checkbox" ng-model="exactMatch"> Exact Match for All
+<status-text ng-show="isLoading"></status-text>
+</div>
+<div class="row">
+<table class="table">
+    <thead>
+          <tr>
+              <th ng-click="sortData('project')">Project <div ng-class="getSortClass('project')"></div></th>
+              <th ng-click="sortData('interface')">Interface <div ng-class="getSortClass('interface')"></div></th>
+              <th ng-click="sortData('environment')">Environment <div ng-class="getSortClass('environment')"></div></th>
+              <th ng-click="sortData('rc_tag')">RCTag <div ng-class="getSortClass('rc_tag')"></div></th>
+              <th ng-click="sortData('timestamp')">Timestamp <div ng-class="getSortClass('timestamp')"></div></th>
+          </tr>  
+    </thead>
+    <body>
+        <tr ng-repeat="rctags in listRCTags | orderBy:sortColumn:reverseSort | filter:searchText:exactMatch">
+            <td>{{rctags.project}}</td>
+            <td>{{rctags.interface}}</td>
+            <td>{{rctags.environment}}</td>
+            <td>{{rctags.rc_tag}}</td>  
+            <td>{{rctags.timestamp}}</td>    
+        </tr>
+    </body>
+</table>
+<button class="btn btn-primary" ng-click="reload()">Reload</button>
+</div>

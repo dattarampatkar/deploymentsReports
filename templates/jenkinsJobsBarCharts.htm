@@ -1,0 +1,19 @@
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+      <label for="project">Project: </label>
+      <select class="form-control-inline" id="project" ng-model="selectedProject" ng-options="project for project in projects" ng-change="loadInterfaces()" ng-click="loadInterfaces()">
+      </select>
+	  <label for="interface">Interface: </label>
+	  <select class="form-control-inline" id="interface" ng-model="selectedInterface" ng-options="interface for interface in interfaces">
+      </select>
+	  &nbsp;&nbsp;
+	  <button class="btn btn-primary btn-sm"  ng-click="loadData()">Get Details</button>
+</div>
+
+</div>
+
+</div>
+<div class="row">
+	<div id="jobstatuschart"></div>
+</div>

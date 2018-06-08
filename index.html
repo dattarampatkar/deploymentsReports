@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Loblaw DevOps DashBoard</title>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <br>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--a class="navbar-brand" href="#">Devops Dashboard</a-->
+                <img src="imgs/Loblaws.png" style="height:80%;width:90%;margin-top: 5px">
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#!deploymentInfo">DeploymentInfo</a>
+                </li>
+                <li>
+                    <a href="#!rcTagStatus">RC Tag Status</a>
+                </li>
+                <li>
+                    <a href="#!deploymentTarget">Deployment Targets</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Charts
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#!rcTagTimeLine">RC Tag Timeline</a>
+                        </li>
+                        <li>
+                            <a href="#!jenkinsJobsBarCharts">Job Charts</a>
+                        </li>
+                        <li>
+                            <a href="#">Pending</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div ng-app="dashboardApp" class="container-fluid">
+        <div class="col-sm-12">
+            <div ng-view></div>
+        </div>
+    </div>
+    <script src="js/dashboardApp.js"></script>
+</body>
+
+</html>

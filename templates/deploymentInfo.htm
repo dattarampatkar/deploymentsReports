@@ -1,0 +1,67 @@
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+      <label for="project">Project: </label>
+      <select class="form-control-inline" id="project" ng-model="selectedProject" ng-options="project for project in projects">
+      </select>
+	  <label for="interface">Interface: </label>
+	  <select class="form-control-inline" id="interface" ng-model="selectedInterface" ng-options="interface for interface in interfaces">
+      </select>
+	  &nbsp;&nbsp;
+	  <button class="btn btn-primary btn-sm">Get Details</button>
+</div>
+
+</div>
+<div class="col-sm-8">
+
+<div class="form-group">
+ <label>Search :</label>
+<input type="text" ng-model="searchText.project" placeholder="Search Project" />
+<input type="text" ng-model="searchText.interface" placeholder="Search Interface" />
+<input type="text" ng-model="searchText.environment" placeholder="Search Environment" />
+<input type="text" ng-model="searchText.rc_tag" placeholder="Search RC Tags" />
+<input type="text" ng-model="searchText.status" placeholder="Search Status" />
+<status-text ng-show="isLoading"></status-text>
+</div>
+</div>
+</div>
+<div class="row">
+<table class="table table-hover table-responsive">
+    <thead>
+          <tr>
+              <th ng-click="sortData('tech_area')">Tech Area <div ng-class="getSortClass('tech_area')"></div></th>
+              <th ng-click="sortData('project')">Project <div ng-class="getSortClass('project')"></div></th>
+              <th ng-click="sortData('interface')">Interface <div ng-class="getSortClass('interface')"></div></th>
+              <th ng-click="sortData('environment')">Environment <div ng-class="getSortClass('environment')"></div></th>
+			  <th ng-click="sortData('rc_tag')">RCTag<div ng-class="getSortClass('rc_tag')"></div></th>
+              <th ng-click="sortData('git_repo')">GIT Repo<div ng-class="getSortClass('git_repo')"></div></th>
+              <th ng-click="sortData('jenkins_url')">Jenkins URL<div ng-class="getSortClass('jenkins_url')"></div></th>
+              <th ng-click="sortData('sonar_url')">Sonar URL<div ng-class="getSortClass('sonar_url')"></div></th>
+              <th ng-click="sortData('build_stage')">Build Stage<div ng-class="getSortClass('build_stage')"></div></th>
+              <th ng-click="sortData('job_type')">Job Type<div ng-class="getSortClass('job_type')"></div></th>
+              <th ng-click="sortData('status')">Status<div ng-class="getSortClass('status')"></div></th>
+              <th ng-click="sortData('timestamp')">TimeStamp<div ng-class="getSortClass('timestamp')"></div></th>
+              <th ng-click="sortData('deployer')">Deployer<div ng-class="getSortClass('deployer')"></div></th>
+          </tr>  
+    </thead>
+    <body>
+        <tr ng-repeat="deployment in listDeployments | orderBy:sortColumn:reverseSort | filter:searchText:exactMatch"
+                        ng-class="{'danger': deployment.status == 'Failed','success': deployment.status == 'Passed'}">
+            <td>{{deployment.tech_area}}</td>
+            <td>{{deployment.project}}</td>
+            <td>{{deployment.interface}}</td>
+            <td>{{deployment.environment}}</td>
+		    <td>{{deployment.rc_tag}}</td> 
+            <td><a href="{{deployment.git_repo}}" target="_blank">GIT Repo</a></td>
+            <td><a href="{{deployment.jenkins_url}}" target="_blank">Jenkins</a></td>                    
+            <td><a href="{{deployment.sonar_url}}" target="_blank">Sonar</a></td>
+            <td>{{deployment.build_stage}}</td> 
+            <td>{{deployment.job_type}}</td> 
+            <td>{{deployment.status}}</td>
+            <td>{{deployment.timestamp}}</td>
+            <td>{{deployment.deployer}}</td>
+        </tr>
+    </body>
+</table>
+<button class="btn btn-primary" ng-click="reload()">Reload</button>
+</div>
